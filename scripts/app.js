@@ -3,6 +3,7 @@ const addTask = document.querySelector('#addTaskButton');
 let myTasks = ['To jest','Task','wasz'];
 
 function loadTasks() {
+  document.querySelector('#taskList').innerHTML="";
   myTasks.forEach(function(task){
     showTasks(task);
   });
@@ -17,7 +18,6 @@ function showTasks(task) {
   </span>
   </div>`;
   document.querySelector('#taskList').appendChild(listItem);
-  // let newTask = document.createTextNode(task);
 }
 
 function addNewTask() {
@@ -27,6 +27,8 @@ function addNewTask() {
     }
     else {
       myTasks.push(newTaskContent.value);
+      newTaskContent.value = "";
+      loadTasks();
     }
 }
 
