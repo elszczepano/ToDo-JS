@@ -2,10 +2,6 @@ const addTask = document.querySelector('#addTaskButton');
 //temporary solution
 let myTasks = ['To jest','Task','wasz'];
 
-// const removeButton = document.createElement("button");
-// const removeButtonContent = document.createTextNode('Remove');
-// removeButton.classList.add('btn','btn-danger');
-// removeButton.appendChild(removeButtonContent);
 function loadTasks() {
   myTasks.forEach(function(task){
     showTasks(task);
