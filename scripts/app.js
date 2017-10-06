@@ -2,24 +2,26 @@ const addTask = document.querySelector('#addTaskButton');
 //temporary solution
 let myTasks = ['To jest','Task','wasz'];
 
-const removeButton = document.createElement("button");
-const removeButtonContent = document.createTextNode('Remove');
-removeButton.classList.add('btn','btn-danger');
-removeButton.appendChild(removeButtonContent);
+// const removeButton = document.createElement("button");
+// const removeButtonContent = document.createTextNode('Remove');
+// removeButton.classList.add('btn','btn-danger');
+// removeButton.appendChild(removeButtonContent);
 function loadTasks() {
-  myTasks.forEach(function(element){
-    showTasks(element);
+  myTasks.forEach(function(task){
+    showTasks(task);
   });
 }
 function showTasks(task) {
 
   let listItem = document.createElement("li");
-  listItem.classList.add('list-group-item','d-flex','justify-content-between','align-items-center');
-  let newTask = document.createTextNode(task);
-  listItem.appendChild(newTask);
-  listItem.appendChild(removeButton);
+  listItem.innerHTML = `<div class="input-group">
+  <input type="text" class="form-control" id="task" value="${task}" readonly>
+  <span class="input-group-btn">
+    <button class="btn btn-danger" id="addTaskButton" type="button">Remove</button>
+  </span>
+  </div>`;
   document.querySelector('#taskList').appendChild(listItem);
-
+  // let newTask = document.createTextNode(task);
 }
 
 function addNewTask() {

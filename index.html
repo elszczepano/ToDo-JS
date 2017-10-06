@@ -10,7 +10,7 @@
 </head>
 <body>
   <main class="container d-flex align-items-center justify-content-center">
-    <div class="col-10 col-sm-10 col-md-7 col-lg-7">
+    <div class="col-12 col-sm-12 col-md-7 col-lg-7">
       <h1>To Do</h1>
       <div class="input-group">
       <input type="text" class="form-control" id="task" placeholder="Add task..." aria-label="Add task...">
@@ -19,24 +19,7 @@
       </span>
     </div>
     <hr>
-    <ul class="task-list list-group list-group-flush" id="taskList">
-      <li>
-        <div class="input-group">
-        <input type="text" class="form-control" id="task" readonly>
-        <span class="input-group-btn">
-          <button class="btn btn-danger" id="addTaskButton" type="button">Remove</button>
-        </span>
-      </div>
-      </li>
-      <li>
-        <div class="input-group">
-        <input type="text" class="form-control" id="task" readonly>
-        <span class="input-group-btn">
-          <button class="btn btn-danger" id="addTaskButton" type="button">Remove</button>
-        </span>
-      </div>
-      </li>
-    </ul>
+    <ul class="task-list list-group list-group-flush" id="taskList"></ul>
     </div>
   </main>
   <script src="scripts/app.js"></script>
