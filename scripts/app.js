@@ -1,7 +1,13 @@
 const addTask = document.querySelector('#addTaskButton');
 const list = document.querySelector('#taskList');
-let myTasks = ["Learn JS","Clean the car","Do the washing up"]; //temporary solution
-
+let myTasks = [];
+let myTasksIndex = localStorage.length;
+function loadTasksFromStorage() {
+  for (let key in localStorage) {
+  myTasks[key] = localStorage.getItem(key);
+  }
+  loadTasks();
+}
 function showTasks(task, index) {
   let listItem = document.createElement("li");
   listItem.innerHTML = `<div class="input-group">
@@ -16,6 +22,7 @@ function showTasks(task, index) {
   removeButton.addEventListener('click',function(){
     removeTask(this);
     delete myTasks[index];
+    localStorage.removeItem(index);
   });
 }
 
@@ -32,9 +39,11 @@ function addNewTask() {
       alert('Field cannot be empty!');
     }
     else {
+      localStorage.setItem(myTasksIndex, newTaskContent.value);
       myTasks.push(newTaskContent.value);
       newTaskContent.value = "";
       loadTasks();
+      myTasksIndex++;
     }
 }
 
@@ -43,5 +52,5 @@ function removeTask(task) {
   task.closest('ul').removeChild(toRemove);
 }
 
-document.addEventListener('DOMContentLoaded',loadTasks);
+document.addEventListener('DOMContentLoaded',loadTasksFromStorage);
 addTask.addEventListener('click', addNewTask);
