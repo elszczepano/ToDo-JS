@@ -1,10 +1,12 @@
 const addTask = document.querySelector('#addTaskButton');
 const list = document.querySelector('#taskList');
 let myTasks = [];
-let myTasksIndex = localStorage.length;
+let lastKey = 0;
 function loadTasksFromStorage() {
+  myTasks = [];
   for (let key in localStorage) {
   myTasks[key] = localStorage.getItem(key);
+  lastKey = key;
   }
   loadTasks();
 }
@@ -39,11 +41,10 @@ function addNewTask() {
       alert('Field cannot be empty!');
     }
     else {
-      localStorage.setItem(myTasksIndex, newTaskContent.value);
+      localStorage.setItem(++lastKey, newTaskContent.value);
       myTasks.push(newTaskContent.value);
       newTaskContent.value = "";
       loadTasks();
-      myTasksIndex++;
     }
 }
 
