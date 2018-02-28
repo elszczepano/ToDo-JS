@@ -4,24 +4,26 @@ let lastKey = 0;
 function showTasks(key) {
   let listItem = document.createElement("li");
   listItem.innerHTML = `<div class="input-group">
-  <input type="text" class="form-control"a value="${localStorage.getItem(key)}" readonly>
-  <span class="input-group-btn">
-    <button class="btn btn-danger"  type="button">Remove</button>
+  <input type="text" class="form-control" value="${localStorage.getItem(key)}" readonly>
+   <span class="input-group-btn">
+    <button class="btn btn-danger" type="button">Remove</button>
   </span>
   </div>`;
   list.appendChild(listItem);
   let removeButton = listItem.querySelector('.btn-danger');
-  removeButton.addEventListener('click',function(){
+  removeButton.addEventListener('click',function() {
     removeTask(this);
-    localStorage.removeItem(key);
-  });
+   localStorage.removeItem(key);
+   });
 }
 function loadTasks() {
   document.querySelector('#taskList').innerHTML="";
-  for (let key in localStorage) {
-  localStorage.getItem(key);
-  showTasks(key);
-  lastKey = key;
+  if(localStorage.length>0) {
+    for (let i=0; i<localStorage.length; i++) {
+    localStorage.getItem(localStorage.key(i));
+    showTasks(localStorage.key(i));
+    lastKey++;
+    }
   }
 }
 function addNewTask() {
@@ -30,7 +32,7 @@ function addNewTask() {
       alert('Field cannot be empty!');
     }
     else {
-      localStorage.setItem(++lastKey, newTaskContent.value);
+      localStorage.setItem(`No. ${lastKey++}`, newTaskContent.value);
       newTaskContent.value = "";
       loadTasks();
     }
