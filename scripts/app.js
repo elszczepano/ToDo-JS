@@ -1,6 +1,6 @@
 const addTask = document.querySelector('#addTaskButton');
 const list = document.querySelector('#taskList');
-let lastKey = 0;
+let lastKey = localStorage.length;
 function showTasks(key) {
   let listItem = document.createElement("li");
   listItem.innerHTML = `<div class="input-group">
@@ -22,7 +22,6 @@ function loadTasks() {
     for (let i=0; i<localStorage.length; i++) {
     localStorage.getItem(localStorage.key(i));
     showTasks(localStorage.key(i));
-    lastKey++;
     }
   }
 }
